@@ -1,4 +1,8 @@
 @charset "utf-8";
+html,
+body {
+  background-color: #222D33;
+}
 .panel .panel-heading {
   background-color: #337AB7;
   padding: 0;
