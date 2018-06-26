@@ -115,3 +115,8 @@ a:active {
 .lt_main .container-fluid .breadcrumb {
   margin-top: 20px;
 }
+.lt_main .lt_content .echart_1,
+.lt_main .lt_content .echart_2 {
+  width: 48%;
+  height: 400px;
+}
