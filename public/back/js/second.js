@@ -59,19 +59,10 @@ $(function () {
     })
   })
 
-
-
-
-  //添加图片
-  $('#myModal1 .btn-addImg').on('click', function () {
-    $("[type='file']").click()
-  })
-
   //图片上传回显
   $('#fileupload').fileupload({
     dataType: 'json',
     done: function (e, data) {
-      console.log(data);
       $('.img-box img').attr('src', data.result.picAddr)
       $('[name="brandLogo"]').val(data.result.picAddr)
       $('#form').data('bootstrapValidator').updateStatus('brandLogo', 'VALID')
@@ -117,14 +108,12 @@ $(function () {
   //添加二级分类
   $('#form').on('success.form.bv', function (e) {
     e.preventDefault()
-    console.log($('#form').serialize())
     $.ajax({
       type: 'post',
       url: '/category/addSecondCategory',
       data: $('#form').serialize(),
       dataType: 'json',
       success: function (info) {
-        console.log(info);
         if (info.success) {
           $('#myModal1').modal('hide')
           $('#form').data('bootstrapValidator').resetForm(true)
@@ -132,7 +121,7 @@ $(function () {
           render(currentPage)
 
           $('.dropdownText').text('请选择一级分类')
-          $('.img-box img').attr('src', '../images/default.png')
+          $('.img-box img').attr('src', './images/default.png')
         }
       }
     })
