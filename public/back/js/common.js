@@ -54,7 +54,7 @@
   })
 
   //4.点击模态框中的退出按钮,需要进行退出操作(ajax)
-  $('.modal .btn-primary').on('click', function () {
+  $('#myModal .btn-primary').on('click', function () {
     $.ajax({
       type: 'get',
       url: '/employee/employeeLogout',
