@@ -129,42 +129,53 @@
   <div class="modal fade" id="myModal1" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">
-            <span>&times;</span>
-          </button>
-          <h4 class="modal-title" id="myModalLabel1">添加分类</h4>
-        </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <div class="dropdown">
-              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-                请选择一级分类
-                <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu" role="menu">
-                <li role="presentation">
-                  <a role="menuitem" tabindex="-1" href="#">皮皮</a>
-                </li>
-              </ul>
+        <form id="form">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+              <span>&times;</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel1">添加分类</h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                  <span class="dropdownText">请选择一级分类</span>
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu select-menu" role="menu">
+                  <!-- 动态渲染一级目录 -->
+                </ul>
+              </div>
+              <!-- 存储一级目录的id -->
+              <input type="hidden" id="categoryId" name="categoryId">
+              <!-- 存储是否火热,默认全火热,value为1 -->
+              <input type="hidden" id="hot" name="hot" value="1">
+            </div>
+            <div class="form-group">
+              <!-- 存储二级目录名 -->
+              <input id="brandName" class="form-control" type="text" name="brandName" placeholder="请输入二级分类的名称">
+            </div>
+            <div class="form-group">
+              <button class="btn btn-default btn-addImg">上传图片</button>
+              <!-- 
+              必须制定input的类型为文件类型:file
+              name属性值: 相当于ajax的data
+              data-url: 相当于ajax的url
+             -->
+              <input type="file" id="fileupload" name="pic1" data-url="/category/addSecondCategoryPic" style="display: none;">
+            </div>
+            <div class="form-group img-box">
+              <img src="images/default.png" alt="" width="100" height="100">
+              <!-- 用于存储图片的地址 -->
+              <input type="hidden" name="brandLogo" id="brandLogo">
             </div>
           </div>
-          <div class="form-group">
-            <input class="form-control" type="text" name="erji" placeholder="请输入二级分类的名称">
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="submit" class="btn btn-primary btn-addSecond">添加</button>
           </div>
-          <div class="form-group">
-            <button class="btn btn-default btn-addImg">上传图片</button>
-            <input type="file" style="display: none;">
-          </div>
-          <div class="form-group">
-            <img src="images/default.jpg" alt="" width="100" height="100">
-          </div>
-
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-          <button type="button" class="btn btn-primary">添加</button>
-        </div>
+        </form>
       </div>
     </div>
   </div>
@@ -173,6 +184,8 @@
   <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
   <script src="./lib/bootstrap-validator/js/bootstrapValidator.min.js"></script>
   <script src="./lib/bootstrap-paginator/bootstrap-paginator.min.js"></script>
+  <script src="./lib/jquery-fileupload/jquery.ui.widget.js"></script>
+  <script src="./lib/jquery-fileupload/jquery.fileupload.js"></script>
   <script src="./lib/artTemplate/template-web.js"></script>
   <script src="./lib/nprogress/nprogress.js"></script>
   <script src="./js/common.js"></script>
@@ -185,9 +198,17 @@
       <td>{{ v.categoryName }}</td>
       <td>{{ v.brandName }}</td>
       <td>
-        <img src="{{ v.brandLogo }}" alt="">
+        <img src="{{ v.brandLogo }}" alt="" height="50">
       </td>
     </tr>
+    {{ /each }}
+  </script>
+
+  <script type="text/template" id="first-tmp">
+    {{ each rows v i }}
+    <li role="presentation">
+      <a role="menuitem" tabindex="-1" href="#" data-id="{{ v.id }}">{{ v.categoryName}}</a>
+    </li>
     {{ /each }}
   </script>
 </body>
