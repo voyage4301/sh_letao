@@ -4,6 +4,23 @@ body {
   height: 100%;
 }
 
+/* 
+  -wibkit-transform: translateZ(0);
+  transform: translateZ(0);
+  translateZ 可以让手机启用gpu渲染模式,加快页面3d位移的流畅度,可能会让手机电量消耗加快
+*/
+
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.current {
+  color: orange;
+}
+
 .lt_container {
   width: 100%;
   height: 100%;
@@ -14,28 +31,150 @@ body {
   margin: 0 auto;
   background-color: pink;
   position: relative;
-  /* 头部 */
-  .lt_header {
+  .lt_header,
+  .lt_footer {
     width: 100%;
-    height: 45px;
     position: absolute;
-    top: 0;
     left: 0;
     background-color: #006699;
+    z-index: 999;
+  }
+  /* 头部 */
+  .lt_header {
+    top: 0;
+    height: 45px;
+    padding-left: 45px;
+    padding-right: 55px;
+    line-height: 45px;
+    .home,
+    .search {
+      height: 100%;
+      position: absolute;
+      top: 0;
+      a {
+        display: block;
+        text-align: center;
+        color: #fff;
+      }
+    }
+    .home {
+      width: 45px;
+      left: 0;
+    }
+    .appTitle {
+      width: 100%;
+      height: 100%;
+      h4 {
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        color: #fff;
+        line-height: 45px;
+      }
+    }
+    .search {
+      width: 55px;
+      height: 100%;
+      right: 0;
+    }
   }
   /* 主体 */
   .lt_body {
     width: 100%;
     height: 100%;
-    background-color: #daa520;
+    // background-color: #daa520;
+    position: relative; //这里必须定位,因为mui-scroll-wrapper使用了绝对定位
+    .lt_nav {
+      background-color: #fff;
+      padding: 10px;
+      ul {
+        li {
+          width: 33%;
+          float: left;
+          a {
+            display: block;
+            width: 100%;
+            height: 100%;
+            img {
+              display: block;
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+    .lt_items {
+      width: 100%;
+      padding: 10px;
+      background-color: #fff;
+      ul {
+        li {
+          width: 48%;
+          border: 1px solid #ccc;
+          float: left;
+          margin-bottom: 10px;
+          &:nth-child(odd) {
+            margin-right: 4%;
+          }
+          a {
+            display: block;
+            padding: 10px;
+            text-align: center;
+            img {
+              display: block;
+              width: 100%;
+            }
+            p {
+              span {
+                &:first-child{
+                  color: red;
+                  margin-right: 10px;
+                }
+                &:last-child {
+                  text-decoration: line-through;
+                }
+              }
+            }
+            button {
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
   }
   /* 底部 */
   .lt_footer {
-    width: 100%;
     height: 55px;
-    position: absolute;
     bottom: 0;
-    left: 0;
-    background-color: #006699;
+    ul {
+      height: 100%;
+      li {
+        width: 25%;
+        height: 100%;
+        float: left;
+        &.current {
+          a,
+          p {
+            color: orange;
+          }
+        }
+        a {
+          height: 100%;
+          display: block;
+          text-align: center;
+          color: #fff;
+          padding-top: 8px;
+          i {
+            font-size: 17px;
+          }
+          p {
+            color: #fff;
+            margin-bottom: 0;
+            font-size: 14px;
+          }
+        }
+      }
+    }
   }
 }
