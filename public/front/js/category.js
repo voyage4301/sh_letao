@@ -20,7 +20,6 @@ $(function () {
   }
   renderLeft()
 
-
   //3.动态渲染右侧二级信息
   function renderRight(id) {
     $.ajax({
@@ -29,14 +28,21 @@ $(function () {
       data: {
         id: id || 1
       },
-      dataType: '',
+      dataType: 'json',
       success: function (info) {
-        // console.log(info);
         $('#secondList').html(template('listSecond', info))
       }
     })
   }
-
   renderRight()
+
+  //4.一级目录点击渲染二级
+  $('#firstList').on('click', 'a', function () {
+    $(this).parent().siblings().each(function () {
+      $(this).removeClass('current')
+    })
+    $(this).parent().addClass('current')
+    renderRight($(this).data('id'))
+  })
 
 })

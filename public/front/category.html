@@ -42,9 +42,7 @@
           <div class="mui-scroll">
             <!--这里放置真实显示的DOM内容-->
             <ul id="firstList">
-
               <!-- 动态渲染一级列表 -->
-
             </ul>
           </div>
         </div>
@@ -64,13 +62,13 @@
     <div class="lt_footer">
       <ul class="mui-clearfix">
         <li>
-          <a href="javascript:;">
+          <a href="./index.html">
             <i class="fa fa-home"></i>
             <p>首页</p>
           </a>
         </li>
         <li class="current">
-          <a href="javascript:;">
+          <a href="./category.html">
             <i class="fa fa-bars"></i>
             <p>分类页</p>
           </a>
@@ -103,7 +101,7 @@
   <script type="text/html" id="listFirst">
     {{ each rows v i }}
     <li>
-      <a href="javascript:;">{{ v.categoryName }}</a>
+      <a href="javascript:;" data-id="{{ v.id }}" >{{ v.categoryName }}</a>
     </li>
     {{ /each }}
   </script>
