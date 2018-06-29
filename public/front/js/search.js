@@ -1,8 +1,8 @@
 $(function () {
   //1.搜索历史记录渲染(渲染之前需要在本地存储)
-  var data = ['阿迪', '耐克', '匡威'],
-    jsstr = JSON.stringify(data)
-  localStorage.setItem('value', jsstr)
+  // var data = ['阿迪', '耐克', '匡威'],
+  //   jsstr = JSON.stringify(data)
+  // localStorage.setItem('value', jsstr)
 
 
   //2.清除历史记录时,页面需要重新渲染
@@ -62,6 +62,6 @@ $(function () {
 
     $('.search-input').val('') //重置搜索框
 
-    location.href = 'searchList?key=' + newVal
+    location.href = 'searchList.html?key=' + newVal
   })
 })

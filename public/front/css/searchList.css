@@ -1,0 +1,18 @@
+@charset "utf-8";
+.nav {
+  padding: 10px;
+}
+.nav ul {
+  background-color: #EEE;
+}
+.nav ul li {
+  width: 25%;
+  float: left;
+  text-align: center;
+}
+.nav ul li a {
+  color: #000;
+}
+.nav ul li a.current {
+  color: darkorange;
+}
