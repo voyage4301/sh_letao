@@ -1,0 +1,45 @@
+.lt_body .search {
+  padding: 10px;
+  position: relative;
+}
+.lt_body .search input {
+  height: 34px;
+  border: 1px solid #007aff;
+  font-size: 12px;
+  border-radius: 5px;
+  margin: 0;
+}
+.lt_body .search button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+.lt_body .history_title {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  font-size: 14px;
+  color: #8f8f94;
+}
+.lt_body .history_content {
+  padding: 10px;
+  color: #8f8f94;
+}
+.lt_body .history_content ul {
+  width: 100%;
+  height: 100%;
+  border: 1px dashed #000;
+}
+.lt_body .history_content ul li {
+  width: 100%;
+  height: 50px;
+  padding: 10px;
+  border-bottom: 1px dashed #000;
+}
+.lt_body .history_content ul li:last-child {
+  border-bottom: none;
+}
+.lt_body .history_content ul li a,
+.lt_body .history_content ul li i {
+  line-height: 29px;
+}

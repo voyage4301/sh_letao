@@ -72,6 +72,7 @@ ol {
   text-align: center;
   color: #fff;
   line-height: 45px;
+  font-weight: normal;
 }
 .lt_container .lt_header .search {
   width: 55px;

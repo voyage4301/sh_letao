@@ -1,0 +1,38 @@
+1.localStorage
+
+注意: localStorage只能存在字符串类型的数据
+
+存=> localStorage.setItem(k,v)
+取=> localStorage.getItem(k)
+删=> localStorage.removeItem(k)
+清空=> localStorage.clear()
+
+JSON.stringify() =>  转json
+JSON.parse() => json转普通
+
+
+arr
+  1.push() 数组最后面添加, 返回新数组的长度
+  2.pop() 删除数组最后一项, 返回删除的那一项
+  3.unshift() 数组最前面添加, 返回新数组的长度
+  4.shift() 删除数组第一项, 返回删除的那一项
+  
+  5.str.split() 字符串转数组
+  6.arr.join() 数组转字符串
+
+  7.arr.slice() //数组截取,返回一个新数组
+    参数1: 开始索引, 参数2: 截取的长度, 返回: 一个新数组
+    妙用: 两个参数都不传时 => 克隆一个数组
+          只传参数1时 => 从参数1截取到最后一个
+          参数2为负数时,比如 arr.splice(1,-1) => 表示从1截取到倒数第一个数
+          只传参数1,并且为负数时,表示从倒数第几个开始截取到最后一个
+
+  8.splice()
+    splice(start,num,arg1,arg2...)
+      参数1: 开始索引
+      参数2: 删除的个数
+      参数3...:添加的项
+    添加: arr.splice(要插入的位置的索引(前面的索引+1),0,添加的项的值) 
+    删除: arr.splice(要删除的开始索引,删的个数)
+    替换: arr.splice(删除的索引,1,替换的值)
+
