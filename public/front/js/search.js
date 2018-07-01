@@ -18,8 +18,7 @@ $(function () {
       list: getHistory('value')
     }))
   }
-
-  render()
+  
   // 3.清空
   $('#clearHistory').on('click', function () {
     // 添加提示框

@@ -1,5 +1,6 @@
 $(function () {
-
+  var current = 1,
+    pageSzie = 2
   // 导航变色
   $(".nav a[data-type]").each(function () {
     $(this).on('click', function () {
@@ -15,11 +16,11 @@ $(function () {
 
   $('.search-input').val(getSearchObj('key'))
   //进入时渲染搜索的商品数据
-  function render(proName) {
+  function render(callback) {
     var params = {
-      proName: proName || $('.search-input').val(),
-      page: 1,
-      pageSize: 100
+      proName: $('.search-input').val(),
+      page: current,
+      pageSize: pageSzie
     }
     var $current = $('.nav .current')
     if ($current.length > 0) {
@@ -31,17 +32,46 @@ $(function () {
       type: 'get',
       url: '/product/queryProduct',
       data: params,
-      dataType: '',
+      dataType: 'json',
       success: function (info) {
+        callback && callback(info)
         console.log(info);
-
-        $('.lt_items ul').html(template('searchItems', info))
       }
     })
   }
-  render()
+  // render()
 
-
+  //配置下拉刷新
+  mui.init({
+    pullRefresh: {
+      container: ".mui-scroll-wrapper", //下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
+      down: {
+        auto: true,
+        callback: function () {
+          current = 1
+          render(function (info) {
+            $('.lt_items ul').html(template('searchItems', info))
+            mui('.mui-scroll-wrapper').pullRefresh().endPulldownToRefresh()
+            mui('.mui-scroll-wrapper').pullRefresh().enablePullupToRefresh()
+          })
+        }
+      },
+      up: {
+        callback: function () {
+          current++
+          render(function (info) {
+            if (info.data.length === 0) {
+              mui('.mui-scroll-wrapper').pullRefresh().endPullupToRefresh(true)
+            } else {
+              $('.lt_items ul').append(template('searchItems', info))
+              mui('.mui-scroll-wrapper').pullRefresh().endPullupToRefresh()
+            }
+          })
+          // 请求下一页的数据,追加到原有页面中
+        }
+      }
+    }
+  });
 
 
   function getHistory(key) {
