@@ -1,0 +1,33 @@
+.lt_body .public_items {
+  padding: 10px;
+  border-top: 1px solid #ccc;
+}
+.lt_body .lt_proPrice span:first-child {
+  color: red;
+}
+.lt_body .lt_proPrice span:last-child {
+  text-decoration: line-through;
+  color: #666;
+}
+.lt_body .lt_proSize ul li {
+  display: block;
+  width: 25px;
+  height: 25px;
+  float: left;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+.lt_body .lt_proSize ul li a {
+  color: #fff;
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-size: 12px;
+  line-height: 25px;
+  text-align: center;
+  border: 1px solid #000;
+}
+.lt_body .lt_proSize ul li a.current {
+  background-color: orange;
+  color: #fff;
+}

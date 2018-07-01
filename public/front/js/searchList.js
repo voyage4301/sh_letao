@@ -3,22 +3,24 @@ $(function () {
     pageSzie = 2
   // 导航变色
   $(".nav a[data-type]").each(function () {
-    $(this).on('click', function () {
+    $(this).on('tap', function () {
       if ($(this).hasClass('current')) {
         $(this).find('i').toggleClass('fa-angle-down').toggleClass('fa-angle-up')
       }
       $(this).addClass('current')
       $(this).siblings().removeClass('current')
-      render()
+      // render()
+      mui('.mui-scroll-wrapper').pullRefresh().pulldownLoading() //触发一次下拉刷新
     })
   })
 
 
   $('.search-input').val(getSearchObj('key'))
+  var proName = $('.search-input').val()
   //进入时渲染搜索的商品数据
   function render(callback) {
     var params = {
-      proName: $('.search-input').val(),
+      proName: proName,
       page: current,
       pageSize: pageSzie
     }
@@ -34,8 +36,9 @@ $(function () {
       data: params,
       dataType: 'json',
       success: function (info) {
+        console.log(params.proName);
+
         callback && callback(info)
-        console.log(info);
       }
     })
   }
@@ -46,7 +49,7 @@ $(function () {
     pullRefresh: {
       container: ".mui-scroll-wrapper", //下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
       down: {
-        auto: true,
+        auto: true, //一进入页面就自动下拉刷新
         callback: function () {
           current = 1
           render(function (info) {
@@ -81,7 +84,7 @@ $(function () {
   }
   //点击搜索按钮渲染商品
   $('.search-btn').on('click', function () {
-    var proName = $('.search-input').val()
+    proName = $('.search-input').val()
     if (proName === '') {
       mui.toast('调皮! o(*￣︶￣*)o')
       return
@@ -95,8 +98,15 @@ $(function () {
     arr.length > 10 && arr.pop() //限制条数
 
     localStorage.setItem('value', JSON.stringify(arr)) //新增
-    render()
+    // render()
+    mui('.mui-scroll-wrapper').pullRefresh().pulldownLoading() //触发一次下拉刷新
+
     $('.search-input').val('') //重置搜索框
+  })
+
+  //立即购买
+  $('.lt_items').on('tap', 'a', function () {
+    location.href = './product.html?productId=' + $(this).data(id)
   })
 
 })

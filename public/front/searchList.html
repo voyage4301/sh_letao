@@ -121,14 +121,14 @@
 	<script type="text/html" id="searchItems">
 		{{ each data v i }}
 		<li>
-			<a href="javascript:;">
+			<a href="./product.html?productId={{ v.id }}" data-id="{{ v.id }}">
 				<img src="{{ v.pic[0].picAddr }}" alt="">
 				<p>{{ v.proName }}</p>
 				<p>
 					<span>{{ v.price}}</span>
 					<span>{{ v.oldPrice }}</span>
 				</p>
-				<button class="mui-btn mui-btn-primary">立即购买</button>
+				<button class="buyNow mui-btn mui-btn-primary">立即购买</button>
 			</a>
 		</li>
 		{{ /each }}
