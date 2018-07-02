@@ -10,58 +10,49 @@
   <link rel="stylesheet" href="./lib/fa/css/font-awesome.min.css">
 
   <link rel="stylesheet" href="./css/index.css">
-  <link rel="stylesheet" href="./css//search.css">
   <title>乐淘商城</title>
 </head>
 
 <body>
-  <!-- <i class="fa fa-home"></i> -->
-
   <!-- 全屏容器 -->
   <div class="lt_container">
     <!-- 头部 -->
     <div class="lt_header">
       <div class="home">
-        <!-- 返回上一步 -->
         <a href="javascript:history.go(-1);">
           <i class="mui-icon mui-icon-back"></i>
         </a>
       </div>
       <div class="appTitle">
-        <h4>搜索中心</h4>
+        <h4>登录</h4>
       </div>
     </div>
     <!-- 主体 -->
     <div class="lt_body">
       <div class="mui-scroll-wrapper">
         <div class="mui-scroll">
-          <!--这里放置真实显示的DOM内容-->
-          <!-- 搜索栏 -->
-          <div class="search">
-            <input class="search-input" type="text" name="text" placeholder="请输入搜索关键字">
-            <button class="search-btn mui-btn mui-btn-primary">搜索</button>
-          </div>
-          <!-- title -->
-          <div class="history_title mui-clearfix">
-            <div class="mui-pull-left">搜索历史</div>
-            <div class="mui-pull-right">
-              <a id="clearHistory" href="javascript:;">
-                <i class="mui-icon mui-icon-trash"></i>
-                <span>清空历史</span>
-              </a>
+          <!-- 登录 -->
+          <form id="form" class="mui-input-group">
+            <div class="mui-input-row">
+              <label>用户名</label>
+              <input type="text" name="username" class="mui-input-clear" placeholder="请输入用户名">
             </div>
-          </div>
-          <!-- content -->
-          <div class="history_content">
-            <!-- 动态渲染 -->
-          </div>
+            <div class="mui-input-row">
+              <label>密码</label>
+              <input type="password" name="password" class="mui-input-password" placeholder="请输入密码">
+            </div>
+            <div class="mui-button-row">
+              <button id="loginBtn" type="button" class="mui-btn mui-btn-primary">登录</button>
+              <button type="reset" class="mui-btn mui-btn-danger">重置</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
     <!-- 底部 -->
     <div class="lt_footer">
       <ul class="mui-clearfix">
-        <li>
+        <li class="current">
           <a href="./index.html">
             <i class="fa fa-home"></i>
             <p>首页</p>
@@ -94,24 +85,10 @@
   <script src="./lib/zepto/zepto.min.js"></script>
   <script src="./lib/artTemplate/template-web.js"></script>
   <script src="./js/common.js"></script>
-  <script src="./js/search.js"></script>
+  <script src="./js/login.js"></script>
 
 
-  <!-- 搜索的历史记录模板 -->
-  <script type="text/html" id="historyList">
-    {{ if (list.length === 0) }}
-    <p>没有更多历史记录</p>
-    {{ /if }}
-    <ul>
-      {{ each list v i }}
-      <li class="mui-clearfix">
-        <a href="searchList.html?key={{ v }}" class="mui-pull-left">{{ v }}</a>
-        <i class="mui-pull-right mui-icon mui-icon-closeempty" data-index="{{ i }}"></i>
-      </li>
-      {{ /each }}
-    </ul>
 
-  </script>
 </body>
 
 </html>

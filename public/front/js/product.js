@@ -1,8 +1,6 @@
 $(function () {
 
   function render() {
-    console.log(getSearchObj('productId'));
-
     $.ajax({
       type: 'get',
       url: '/product/queryProductDetail',
@@ -24,6 +22,10 @@ $(function () {
         info.size = sizeArr
 
         $('.lt_body .mui-scroll').html(template('productList', info))
+        var gallery = mui('.mui-slider');
+        gallery.slider({
+          interval: 2000 //自动轮播周期，若为0则不自动播放，默认为0；
+        });
         // 初始化商品数量输入框
         mui(".mui-numbox").numbox()
       }
@@ -37,7 +39,15 @@ $(function () {
     $(this).addClass('current').parent().siblings().find('a').removeClass('current')
   })
 
-
+  //登出
+  // $.ajax({
+  //   type: 'get',
+  //   url: '/user/logout',
+  //   dataType: 'json',
+  //   success: function (info) {
+  //     console.log(info);
+  //   }
+  // })
 
   $('.lt_body').on('tap', '.joinCar', function () {
     var num = $('.lt_proNum input').val(),
@@ -47,19 +57,27 @@ $(function () {
       mui.toast('调皮! o(*￣︶￣*)o')
       return
     }
-
+    var productId = getSearchObj('productId')
     $.ajax({
       type: 'post',
       url: '/cart/addCart',
       data: {
-        productId: getSearchObj('productId'),
+        productId: productId,
         num: num,
         size: size
       },
       dataType: 'json',
       success: function (info) {
-        // console.log(info);
-        info.error === 400 && mui.toast('未登录')
+        console.log(info);
+        if (info.error === 400) {
+          location.href = './login.html?retUrl=' + location.href
+        } else {
+          mui.confirm("添加成功", "温馨提示", ["去购物车", "继续浏览"], function (e) {
+            if (e.index == 0) {
+              // location.href = "cart.html";
+            }
+          });
+        }
       }
     })
   })
